@@ -17,7 +17,10 @@ module.exports = function ApiBuilder(components) {
 			var path = route.replace(/^\//, ''),
 				customHeaders = methodConfigurations[path] && methodConfigurations[path][method] && methodConfigurations[path][method].success && methodConfigurations[path][method].success.headers;
 
+			console.info('HandlerResult', handlerResult);
+			console.info('Got custom headers', customHeaders);
 			if (isApiResponse(handlerResult)) {
+				console.info('ApiResponse');
 				if (!customHeaders) {
 					throw 'cannot use ApiResponse without enumerating headers in ' + method + ' ' + route;
 				}
