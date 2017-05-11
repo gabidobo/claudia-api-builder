@@ -57,7 +57,9 @@ module.exports = function ApiBuilder(components) {
 						result = handler(event);
 						if (isThenable(result)) {
 							return result.then(function (promiseResult) {
-								context.done(null, packResult(promiseResult, path, event.context.method));
+								let results = packResult(promiseResult, path, event.context.method);
+								console.info('Got results', results);
+								context.done(null, results);
 							}, function (promiseError) {
 								context.done(promiseError);
 							});
